@@ -1,6 +1,6 @@
-# The Hades project
+# Hermes System
 
-This repository contains the implementation of the **Hades Project**, developed at the Instituto Nacional de Metrologia, Qualidade e Tecnologia (Inmetro).
+This repository contains the implementation of the **Hermes System**, developed at the Instituto Nacional de Metrologia, Qualidade e Tecnologia (Inmetro).
 
 Research team:
 
