@@ -10,7 +10,7 @@ Research team:
 
 The Hermes-Fabric project is an application that aims, through a blockchain network, to ensure the security and reliability of stored data.
 
-We adopt [Hyperledger Fabric 1.4 LTS](https://hyperledger-fabric.readthedocs.io/en/release-1.4/) as our blockchain platform. We configure a basic blockchain network which delivers a homomorphic computing chaincode.
+We adopt [Hyperledger Fabric 1.4 LTS](https://hyperledger-fabric.readthedocs.io/en/release-1.4/) as our blockchain platform.
 
 We describe in the next sections the main aspects related to the Fabric blockchain network customizing, the chaincode development  and the application client created to put all the stuff together.
 
@@ -40,29 +40,17 @@ Execute the [installation script](prerequirements/installFabric.sh):
 
 **OBSERVATION**: you do not need to run the script as *sudo*. The script will automatically ask for your *sudo* password when necessary. That is important to keep the docker containers running with your working user account.
 
-### 2. Generate the MSP artifacts
-
-Before to execute this step, check if the environment variable FABRIC_CFG_PATH is properly defined. If it is not, uncomment the following line in the script [mspINMETRO.sh](blockchain/mspINMETRO.sh).
-
-```console
-export FABRIC_CFG_PATH=$PWD
-```
-
-After, in the folder [blockchain](blockchain), execute the script:
-
-```console
-./bynf.sh -m generate
-```
-
-This script uses [configtx.yaml](blockchain/configtx.yaml) and [crypto-config.yaml](blockchain/crypto-config.yaml) to create the MSP certificates in the folder (blockchain/crypto-config). It also generates the genesis block file *genesis.block* and the channel configuration file *channel.tx*. Noticed that this script depends on the tools installed together with Fabric. The script *installFabric.sh* executed previously is expected to modify your $PATH variable and enable the direct execution of the Fabric tools. If this does not happen, try to fix the $PATH manually. The tools usually are located in the folder /$HOME/fabric_samples/bin.
-
 ### 3. Manage the network
 
 In the folder [blockchain](blockchain), execute the following script to start the network:
 
 ```console
-./byfn.sh -m up
+./startFabric.sh
 ```
+
+This script uses [configtx.yaml](blockchain/configtx.yaml) and [crypto-config.yaml](blockchain/crypto-config.yaml) to create the MSP certificates in the folder (blockchain/crypto-config). It also generates the genesis block file *genesis.block* and the channel configuration file *channel.tx*. Noticed that this script depends on the tools installed together with Fabric. The script *installFabric.sh* executed previously is expected to modify your $PATH variable and enable the direct execution of the Fabric tools. If this does not happen, try to fix the $PATH manually. The tools usually are located in the folder /$HOME/fabric_samples/bin.
+
+After generating the certificates, the script will raise all the containers on the network.
 
 If you succeed in coming so far, the Hyperledger Fabric shall be running in your machine. You can see information from the containers by using the following commands:
 
@@ -71,16 +59,10 @@ docker ps
 docker stats
 ```
 
-The same tool can be used to stop the newtowk, just in case you need to stop the blockchain network for any reason. In a similar manner as done before, use the following command to stop the network:
+Use the following command to stop the network:
 
 ```console
 ./byfn.sh -m down
-```
-
-If you need to reset and restart a completly new blockchain network, use the following script to remove containers and clean all dependencies:
-
-```console
-./byfn.sh -m restart
 ```
 
 ## The fabmorph chaincode
@@ -98,28 +80,6 @@ go get -u github.com/hyperledger/fabric/core/chaincode/shim
 ### Shell commands to deal with a Fabric chaincode
 
 Our blockchain network profile includes the client container *cli* which is provided only to execute tests with the chaincode. The *cli* is able to communicate with the blockchain network using the peer *peer0.ptb.de* as an anchor and so execute commands for installing, mantaining and testing the chaincode. These commands documentation can be find [here](https://hyperledger-fabric.readthedocs.io/en/release-1.4/commands/peerchaincode.html). We strongly recommend you read this documentation before continuing.
-
-#### 1. Installing, instantiating and upgrading a chaincode
-
-All of this commands already is executed, but, if you want to use a new chaincode in this same network, you can use this commands for install and instantiate or upgrade the chaincode.
-
-Use the **install** command to enable the chaincode execution for a given peer. In practice, you are making this peer an __endorser__. You must reexecute the install command every time you change the chaincode version.
-
-```console
-docker exec cli peer chaincode install -n fabHermes -p github.com/hyperledger/fabric/peer/channel-artifacts/fabHermes -v 1.0
-```
-
-Use the **instantiate** command to instantiate the chaincode in a given channel. In practice, you are notifying the blockchain network that the chaincode exists. You also create a entry in the ledger with the chaincode hash.
-
-```console
-docker exec cli peer chaincode instantiate -o orderer.inmetro:7050 -C inmetro-channel -n fabHermes -v 1.0 -c '{"Args":[]}'
-```
-
-Use the **upgrade** command to enable a new version of the chaincode. That is necessary for any chaincode that was already instantiated before. Notice that a upgraded chaincode need to be re-installed in each one of its endorser peers.
-
-```console
-docker exec cli peer chaincode upgrade -o orderer.inmetro:7050 -C inmetro-channel -n fabHermes -v 1.1 -c '{"Args":[]}'
-```
 
 #### 2. Invoking and/or querying a chaincode
 
@@ -208,14 +168,14 @@ After this, clone Hyperledger Explorer.
 ```console
 cd /home
 git clone https://github.com/hyperledger/blockchain-explorer.git
-
+```
 
 You can modify explorerconfig.json to update postgresql properties.
 
 ```console
 cd blockchain-explorer/app
 gedit explorerconfig.json
-
+```
 
 In some case you may need to apply permission to db
 
