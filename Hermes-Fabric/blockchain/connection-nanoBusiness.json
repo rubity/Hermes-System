@@ -1,0 +1,60 @@
+{
+    "name": "blockchain-nanoBusiness",
+    "version": "1.0.0",
+    "client": {
+        "organization": "nanoBusiness",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "nanoBusiness": {
+            "mspid": "nanoBusinessMSP",
+            "peers": [
+                "peer0.nanoBusiness.com",
+                "peer1.nanoBusiness.com"
+            ],
+            "certificateAuthorities": [
+                "ca.nanoBusiness.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.nanoBusiness.com": {
+            "url": "grpcs://localhost:9051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICVjCCAf2gAwIBAgIQSyK1XDxLIF7Nu6/H17Gd7jAKBggqhkjOPQQDAjB2MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQbmFub0J1c2luZXNzLmNvbTEfMB0GA1UEAxMWdGxz\nY2EubmFub0J1c2luZXNzLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1\nMDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH\nEw1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBuYW5vQnVzaW5lc3MuY29tMR8wHQYD\nVQQDExZ0bHNjYS5uYW5vQnVzaW5lc3MuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D\nAQcDQgAE4mU+mViP2N0iWdzns12XPy0SXyxPxvaSMunEfhW+fP5OL7LrNQdUYfU2\nHEypYUk+euiRzFhZj7MnWQbpZynEA6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud\nJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud\nDgQiBCCfcMHb9wkeBKGD9YDj8bR604U6o6IHPpyTiJorONj0yDAKBggqhkjOPQQD\nAgNHADBEAiADIANLQ1zV+aMxMm/tDI6ieQ8NjYRYftQJKklrdMnBUQIgbvytAxfD\nvyDwfxFRweEXOt7jZBx1mh2Cg4morxO1rzI=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.nanoBusiness.com",
+                "hostnameOverride": "peer0.nanoBusiness.com"
+            }
+        },
+        "peer1.nanoBusiness.com": {
+            "url": "grpcs://localhost:10051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICVjCCAf2gAwIBAgIQSyK1XDxLIF7Nu6/H17Gd7jAKBggqhkjOPQQDAjB2MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQbmFub0J1c2luZXNzLmNvbTEfMB0GA1UEAxMWdGxz\nY2EubmFub0J1c2luZXNzLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1\nMDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH\nEw1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBuYW5vQnVzaW5lc3MuY29tMR8wHQYD\nVQQDExZ0bHNjYS5uYW5vQnVzaW5lc3MuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D\nAQcDQgAE4mU+mViP2N0iWdzns12XPy0SXyxPxvaSMunEfhW+fP5OL7LrNQdUYfU2\nHEypYUk+euiRzFhZj7MnWQbpZynEA6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud\nJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud\nDgQiBCCfcMHb9wkeBKGD9YDj8bR604U6o6IHPpyTiJorONj0yDAKBggqhkjOPQQD\nAgNHADBEAiADIANLQ1zV+aMxMm/tDI6ieQ8NjYRYftQJKklrdMnBUQIgbvytAxfD\nvyDwfxFRweEXOt7jZBx1mh2Cg4morxO1rzI=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.nanoBusiness.com",
+                "hostnameOverride": "peer1.nanoBusiness.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.nanoBusiness.com": {
+            "url": "https://localhost:8054",
+            "caName": "ca-nanoBusiness",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICUTCCAfegAwIBAgIQXXeX3afAKDeYc70/F6MiZzAKBggqhkjOPQQDAjBzMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQbmFub0J1c2luZXNzLmNvbTEcMBoGA1UEAxMTY2Eu\nbmFub0J1c2luZXNzLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1MDBa\nMHMxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T\nYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBuYW5vQnVzaW5lc3MuY29tMRwwGgYDVQQD\nExNjYS5uYW5vQnVzaW5lc3MuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE\njY5E3csQlYbPyGK+nnBXemVnUad4PPc6+51zYDmHSveETXX5EvMKwyAQTBnSXmZC\nc18EBW9WH4bYmV7AL610ZKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQG\nCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCC9\npJesIzci60Sjz+aYgelktNjTIaR2ycC7qF1IESXtdTAKBggqhkjOPQQDAgNIADBF\nAiEAyB9Z83zjFZG2yEOszYSQ7JNlcNp8GzUVOUElFhonq6MCIBSs2htnszAFC0vx\ngXr/R9rBmD8qzYlYh0ZibSbAME0b\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

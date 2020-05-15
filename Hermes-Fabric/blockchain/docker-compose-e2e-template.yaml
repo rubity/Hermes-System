@@ -1,0 +1,125 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  orderer.inmetro.com:
+  peer0.inmetro.com:
+  peer1.inmetro.com:
+  peer0.nanoBusiness.com:
+  peer1.nanoBusiness.com:
+  peer0.ird.com:
+  peer1.ird.com:
+
+networks:
+  byfn:
+services:
+  ca0:
+    image: hyperledger/fabric-ca:$IMAGE_TAG
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-inmetro
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.inmetro.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/CA1_PRIVATE_KEY
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.inmetro.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/CA1_PRIVATE_KEY -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/inmetro.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_Inmetro
+    networks:
+      - byfn
+
+  ca1:
+    image: hyperledger/fabric-ca:$IMAGE_TAG
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-nanoBusiness
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.nanoBusiness.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/CA2_PRIVATE_KEY
+    ports:
+      - "8054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.nanoBusiness.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/CA2_PRIVATE_KEY -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/nanoBusiness.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_NanoBusiness
+    networks:
+      - byfn
+      
+  ca2:
+    image: hyperledger/fabric-ca:$IMAGE_TAG
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-ird
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.ird.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/CA3_PRIVATE_KEY
+    ports:
+      - "9054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.ird.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/CA3_PRIVATE_KEY -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/ird.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_Ird
+    networks:
+      - byfn
+
+  orderer.inmetro.com:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer.inemtro.com
+    container_name: orderer.inmetro.com
+    networks:
+      - byfn
+
+  peer0.inmetro.com:
+    container_name: peer0.inmetro.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.inmetro.com
+    networks:
+      - byfn
+
+  peer1.inmetro.com:
+    container_name: peer1.inmetro.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.inmetro.com
+    networks:
+      - byfn
+
+  peer0.nanoBusiness.com:
+    container_name: peer0.nanoBusiness.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.nanoBusiness.com
+    networks:
+      - byfn
+
+  peer1.nanoBusiness.com:
+    container_name: peer1.nanoBusiness.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.nanoBusiness.com
+    networks:
+      - byfn
+
+  peer0.ird.com:
+    container_name: peer0.ird.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.ird.com
+    networks:
+      - byfn
+
+  peer1.ird.com:
+    container_name: peer1.ird.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.ird.com
+    networks:
+      - byfn

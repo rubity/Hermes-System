@@ -1,0 +1,1 @@
+/home/ambienteteste/blockchain-explorer/app/persistence/fabric/postgreSQL/db/createdb.sh

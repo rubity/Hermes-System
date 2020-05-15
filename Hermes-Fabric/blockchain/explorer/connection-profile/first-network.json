@@ -1,0 +1,67 @@
+{
+	"name": "first-network",
+	"version": "1.0.0",
+	"license": "Apache-2.0",
+	"client": {
+		"tlsEnable": true,
+		"adminUser": "admin",
+		"adminPassword": "adminpw",
+		"enableAuthentication": false,
+		"organization": "inmetro.com",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"mychannel": {
+			"peers": {
+				"peer0.inmetro.com": {}
+			},
+
+			"connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+		}
+	},
+	"organizations": {
+		"InmetroMSP": {
+			"mspid": "InmetroMSP",
+			"fullpath": true,
+			"adminPrivateKey": {
+				"path": "/tmp/crypto/peerOrganizations/inmetro.com/users/Admin@inmetro.com/msp/keystore/978215ac3de8abdaa6874f080dcfa65af2f1138ef6052e1075447d30c191526c_sk"
+			},
+			"signedCert": {
+				"path": "/tmp/crypto/peerOrganizations/inmetro.com/users/Admin@inmetro.com/msp/signcerts/Admin@inmetro.com-cert.pem"
+			}
+		}
+	},
+	"peers":{
+        "peer0.inmetro.com":{
+          "url":"grpcs://peer0.inmetro.com:7051",
+          "eventUrl":"grpcs://peer0.inmetro.com:7053",
+          "grpcOptions": {
+            "grpc.ssl_target_name_override": "peer0.inmetro.com"
+          },
+          "tlsCACerts": {
+            "path": "/tmp/crypto/peerOrganizations/inmetro.com/tlsca/tlsca.inmetro.com-cert.pem"
+          },
+          "clientKey": {
+            "path": "/tmp/crypto/peerOrganizations/inmetro.com/peers/peer0.inmetro.com/tls/server.key"
+          },
+          "clientCert": {
+            "path": "/tmp/crypto/peerOrganizations/inmetro.com/peers/peer0.inmetro.com/tls/server.crt"
+          }
+       }
+    }
+}

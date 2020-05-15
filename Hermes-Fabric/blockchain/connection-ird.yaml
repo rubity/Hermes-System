@@ -1,0 +1,85 @@
+---
+name: blockchain-ird
+version: 1.0.0
+client:
+  organization: ird
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  ird:
+    mspid: irdMSP
+    peers:
+    - peer0.ird.com
+    - peer1.ird.com
+    certificateAuthorities:
+    - ca.ird.com
+peers:
+  peer0.ird.com:
+    url: grpcs://localhost:11051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICNDCCAdqgAwIBAgIRAOCcdreHxHLIniP786f9QVEwCgYIKoZIzj0EAwIwZDEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xEDAOBgNVBAoTB2lyZC5jb20xFjAUBgNVBAMTDXRsc2NhLmlyZC5j
+        b20wHhcNMjAwMTI0MTU0NTAwWhcNMzAwMTIxMTU0NTAwWjBkMQswCQYDVQQGEwJV
+        UzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEQ
+        MA4GA1UEChMHaXJkLmNvbTEWMBQGA1UEAxMNdGxzY2EuaXJkLmNvbTBZMBMGByqG
+        SM49AgEGCCqGSM49AwEHA0IABJbRxbTk65+OKWEvxtbg5tSkiwJ3u6KljK5et4S/
+        6U0d77HIvWdu+wvqRhsMDvm2ez7oX4cTUz4+o8KeR9VbddCjbTBrMA4GA1UdDwEB
+        /wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/
+        BAUwAwEB/zApBgNVHQ4EIgQg4vHO/Zrckf7nXMzt/hVaHGd+7sPbNOhS96seJzyF
+        t8kwCgYIKoZIzj0EAwIDSAAwRQIhANcA1vc6ELyZQPmx/kY6UajM4E06W8ORuucP
+        h+QTI6FDAiBASrIeRgK6aILpVG8W7JYezhJbX1M1CD9XuhK7yNzUUw==
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer0.ird.com
+      hostnameOverride: peer0.ird.com
+  peer1.ird.com:
+    url: grpcs://localhost:12051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICNDCCAdqgAwIBAgIRAOCcdreHxHLIniP786f9QVEwCgYIKoZIzj0EAwIwZDEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xEDAOBgNVBAoTB2lyZC5jb20xFjAUBgNVBAMTDXRsc2NhLmlyZC5j
+        b20wHhcNMjAwMTI0MTU0NTAwWhcNMzAwMTIxMTU0NTAwWjBkMQswCQYDVQQGEwJV
+        UzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEQ
+        MA4GA1UEChMHaXJkLmNvbTEWMBQGA1UEAxMNdGxzY2EuaXJkLmNvbTBZMBMGByqG
+        SM49AgEGCCqGSM49AwEHA0IABJbRxbTk65+OKWEvxtbg5tSkiwJ3u6KljK5et4S/
+        6U0d77HIvWdu+wvqRhsMDvm2ez7oX4cTUz4+o8KeR9VbddCjbTBrMA4GA1UdDwEB
+        /wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/
+        BAUwAwEB/zApBgNVHQ4EIgQg4vHO/Zrckf7nXMzt/hVaHGd+7sPbNOhS96seJzyF
+        t8kwCgYIKoZIzj0EAwIDSAAwRQIhANcA1vc6ELyZQPmx/kY6UajM4E06W8ORuucP
+        h+QTI6FDAiBASrIeRgK6aILpVG8W7JYezhJbX1M1CD9XuhK7yNzUUw==
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer1.ird.com
+      hostnameOverride: peer1.ird.com
+certificateAuthorities:
+  ca.ird.com:
+    url: https://localhost:9054
+    caName: ca-ird
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICLTCCAdOgAwIBAgIQbnRqDS0o62N5HcByGf6D/DAKBggqhkjOPQQDAjBhMQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEQMA4GA1UEChMHaXJkLmNvbTETMBEGA1UEAxMKY2EuaXJkLmNvbTAe
+        Fw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1MDBaMGExCzAJBgNVBAYTAlVTMRMw
+        EQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRAwDgYD
+        VQQKEwdpcmQuY29tMRMwEQYDVQQDEwpjYS5pcmQuY29tMFkwEwYHKoZIzj0CAQYI
+        KoZIzj0DAQcDQgAEQRKb6bFcC5r+2CIRxYY47QXYJJcaFKWiy/GmeT6nh7RsSj4V
+        nSHnxQIbd9aEqoIliAIg1Vr8s+VJqrvDgVzVuaNtMGswDgYDVR0PAQH/BAQDAgGm
+        MB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/
+        MCkGA1UdDgQiBCByrTdw1C3bK0hy5Nt2PnQ7rMOcYc0l/CUXKqOfYdHEuzAKBggq
+        hkjOPQQDAgNIADBFAiEAqdfB7jQDS2/D/AAX09LWKHYIgIT3+RRdt41nWJ7QN9kC
+        IAfrjXLPzy+qMUJWkUTJof/4hJW6LNoO36TdXqcDxdua
+        -----END CERTIFICATE-----
+        
+    httpOptions:
+      verify: false

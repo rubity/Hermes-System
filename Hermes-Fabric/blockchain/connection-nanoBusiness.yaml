@@ -1,0 +1,88 @@
+---
+name: blockchain-nanoBusiness
+version: 1.0.0
+client:
+  organization: nanoBusiness
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  nanoBusiness:
+    mspid: nanoBusinessMSP
+    peers:
+    - peer0.nanoBusiness.com
+    - peer1.nanoBusiness.com
+    certificateAuthorities:
+    - ca.nanoBusiness.com
+peers:
+  peer0.nanoBusiness.com:
+    url: grpcs://localhost:9051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICVjCCAf2gAwIBAgIQSyK1XDxLIF7Nu6/H17Gd7jAKBggqhkjOPQQDAjB2MQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEZMBcGA1UEChMQbmFub0J1c2luZXNzLmNvbTEfMB0GA1UEAxMWdGxz
+        Y2EubmFub0J1c2luZXNzLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1
+        MDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH
+        Ew1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBuYW5vQnVzaW5lc3MuY29tMR8wHQYD
+        VQQDExZ0bHNjYS5uYW5vQnVzaW5lc3MuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D
+        AQcDQgAE4mU+mViP2N0iWdzns12XPy0SXyxPxvaSMunEfhW+fP5OL7LrNQdUYfU2
+        HEypYUk+euiRzFhZj7MnWQbpZynEA6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud
+        JQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud
+        DgQiBCCfcMHb9wkeBKGD9YDj8bR604U6o6IHPpyTiJorONj0yDAKBggqhkjOPQQD
+        AgNHADBEAiADIANLQ1zV+aMxMm/tDI6ieQ8NjYRYftQJKklrdMnBUQIgbvytAxfD
+        vyDwfxFRweEXOt7jZBx1mh2Cg4morxO1rzI=
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer0.nanoBusiness.com
+      hostnameOverride: peer0.nanoBusiness.com
+  peer1.nanoBusiness.com:
+    url: grpcs://localhost:10051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICVjCCAf2gAwIBAgIQSyK1XDxLIF7Nu6/H17Gd7jAKBggqhkjOPQQDAjB2MQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEZMBcGA1UEChMQbmFub0J1c2luZXNzLmNvbTEfMB0GA1UEAxMWdGxz
+        Y2EubmFub0J1c2luZXNzLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1
+        MDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH
+        Ew1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBuYW5vQnVzaW5lc3MuY29tMR8wHQYD
+        VQQDExZ0bHNjYS5uYW5vQnVzaW5lc3MuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D
+        AQcDQgAE4mU+mViP2N0iWdzns12XPy0SXyxPxvaSMunEfhW+fP5OL7LrNQdUYfU2
+        HEypYUk+euiRzFhZj7MnWQbpZynEA6NtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud
+        JQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud
+        DgQiBCCfcMHb9wkeBKGD9YDj8bR604U6o6IHPpyTiJorONj0yDAKBggqhkjOPQQD
+        AgNHADBEAiADIANLQ1zV+aMxMm/tDI6ieQ8NjYRYftQJKklrdMnBUQIgbvytAxfD
+        vyDwfxFRweEXOt7jZBx1mh2Cg4morxO1rzI=
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer1.nanoBusiness.com
+      hostnameOverride: peer1.nanoBusiness.com
+certificateAuthorities:
+  ca.nanoBusiness.com:
+    url: https://localhost:8054
+    caName: ca-nanoBusiness
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICUTCCAfegAwIBAgIQXXeX3afAKDeYc70/F6MiZzAKBggqhkjOPQQDAjBzMQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEZMBcGA1UEChMQbmFub0J1c2luZXNzLmNvbTEcMBoGA1UEAxMTY2Eu
+        bmFub0J1c2luZXNzLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1MDBa
+        MHMxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1T
+        YW4gRnJhbmNpc2NvMRkwFwYDVQQKExBuYW5vQnVzaW5lc3MuY29tMRwwGgYDVQQD
+        ExNjYS5uYW5vQnVzaW5lc3MuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE
+        jY5E3csQlYbPyGK+nnBXemVnUad4PPc6+51zYDmHSveETXX5EvMKwyAQTBnSXmZC
+        c18EBW9WH4bYmV7AL610ZKNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQG
+        CCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1UdDgQiBCC9
+        pJesIzci60Sjz+aYgelktNjTIaR2ycC7qF1IESXtdTAKBggqhkjOPQQDAgNIADBF
+        AiEAyB9Z83zjFZG2yEOszYSQ7JNlcNp8GzUVOUElFhonq6MCIBSs2htnszAFC0vx
+        gXr/R9rBmD8qzYlYh0ZibSbAME0b
+        -----END CERTIFICATE-----
+        
+    httpOptions:
+      verify: false

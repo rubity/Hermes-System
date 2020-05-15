@@ -1,0 +1,127 @@
+{
+  "name":"tls_default",
+  "description":"Sample network contains 2 peers (1 orgs), 1 orderer and 2 cas for Python SDK testing",
+  "version":"1.0.0",
+  "client":{
+    "organization":"inmetro",
+    "credentialStore":{
+      "path":"/tmp/hfc-kvs",
+      "cryptoStore":{
+        "path":"/tmp/hfc-cvs"
+      },
+      "wallet":"wallet-name"
+    }
+  },
+  "channels": {
+    "mychannel": {
+        "orderers": [
+            "orderer.inmetro.com"
+        ],
+        "peers": {
+            "peer0.inmetro.com": {
+                "endorsingPeer": true,
+                "chaincodeQuery": true,
+                "ledgerQuery": true,
+                "eventSource": true
+            }
+        }
+    }
+  },
+  "organizations":{
+    "orderer.inmetro.com":{
+      "mspid": "INMETROMSP",
+      "orderers": [
+        "orderer.inmetro.com"
+      ],
+      "certificateAuthorities": [
+        "ca.inmetro.com"
+      ],
+      "users": {
+        "Admin": {
+          "cert": "crypto-config/ordererOrganizations/inmetro.com/users/Admin@inmetro.com/msp/signcerts/Admin@inmetro.com-cert.pem",
+          "private_key": "crypto-config/ordererOrganizations/inmetro.com/users/Admin@inmetro.com/msp/keystore/f28d3e4c3f9a25e11bbf9520ab78c2f9122cc8282fc4aa938a26b13c31faaa74_sk"}
+      }
+    },
+    "inmetro.com":{
+      "mspid": "InmetroMSP",
+      "peers":[
+        "peer0.inmetro.com",
+        "peer1.inmetro.com"
+      ],
+      "certificateAuthorities":[
+        "ca.inmetro.com"
+      ],
+      "users": {
+        "Admin": {
+          "cert": "crypto-config/peerOrganizations/inmetro.com/users/Admin@inmetro.com/msp/signcerts/Admin@inmetro.com-cert.pem",
+          "private_key": "crypto-config/peerOrganizations/inmetro.com/users/Admin@inmetro.com/msp/keystore/e4643236a805daad266d315eb4178aa099dac3062258a536c3f3d493321d022c_sk"
+        }
+      }
+    }
+  },
+  "orderers":{
+    "orderer.inmetro.com":{
+      "url":"localhost:7050",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "orderer.inmetro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "crypto-config/ordererOrganizations/inmetro.com/tlsca/tlsca.inmetro.com-cert.pem"
+      },
+      "clientKey": {
+        "path": "crypto-config/ordererOrganizations/inmetro.com/orderers/orderer.inmetro.com/tls/server.key"
+      },
+      "clientCert": {
+        "path": "crypto-config/ordererOrganizations/inmetro.com/orderers/orderer.inmetro.com/tls/server.crt"
+      }
+    }
+  },
+  "peers":{
+    "peer0.inmetro.com":{
+      "url":"localhost:7051",
+      "eventUrl":"localhost:7053",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "peer0.inmetro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "crypto-config/peerOrganizations/inmetro.com/tlsca/tlsca.inmetro.com-cert.pem"
+      },
+      "clientKey": {
+        "path": "crypto-config/peerOrganizations/inmetro.com/peers/peer0.inmetro.com/tls/server.key"
+      },
+      "clientCert": {
+        "path": "crypto-config/peerOrganizations/inmetro.com/peers/peer0.inmetro.com/tls/server.crt"
+      }
+    },
+    "peer1.inmetro.com":{
+      "url":"localhost:8051",
+      "eventUrl":"localhost:8053",
+      "grpcOptions": {
+        "grpc.ssl_target_name_override": "peer1.inmetro.com",
+        "grpc-max-send-message-length": 15
+      },
+      "tlsCACerts": {
+        "path": "crypto-config/peerOrganizations/inmetro.com/tlsca/tlsca.inmetro.com-cert.pem"
+      },
+      "clientKey": {
+        "path": "crypto-config/peerOrganizations/inmetro.com/peers/peer1.inmetro.com/tls/server.key"
+      },
+      "clientCert": {
+        "path": "crypto-config/peerOrganizations/inmetro.com/peers/peer1.inmetro.com/tls/server.crt"
+      }
+    }
+  },
+  "certificateAuthorities":{
+    "ca.inmetro.com":{
+      "url":"https://localhost:7054",
+      "registrar":[
+        {
+          "enrollId":"admin",
+          "enrollSecret":"adminpw"
+        }
+      ]
+    }
+  }
+}

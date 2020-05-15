@@ -1,0 +1,113 @@
+{
+    "name": "blockchain-inmetro",
+    "version": "1.0.0",
+    "client": {
+        "organization": "inmetro",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "tlsCerts": {
+            "systemCertPool": true,
+            "client": {
+                "key": {
+                    "path": "crypto-config/peerOrganizations/inmetro.com/users/Admin@inmetro.com/tls/client.key"
+                },
+                "cert": {
+                    "path": "crypto-config/peerOrganizations/inmetro.com/users/Admin@inmetro.com/tls/client.crt"
+                }
+            }
+        },
+  "channels": {
+    "mychannel": {
+        "orderers": [
+            "orderer.inmetro.com"
+        ],
+        "peers": {
+            "peer0.inmetro.com": {
+                "endorsingPeer": true,
+                "chaincodeQuery": true,
+                "ledgerQuery": true,
+                "eventSource": true
+            },
+            "peer1.inmetro.com": {
+                "endorsingPeer": true,
+                "chaincodeQuery": true,
+                "ledgerQuery": true,
+                "eventSource": true
+            }
+        },
+        "connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+    }
+  },
+    "organizations": {
+        "Inmetro": {
+            "mspid": "InmetroMSP",
+            "peers": [
+                "peer0.inmetro.com",
+                "peer1.inmetro.com"
+            ],
+            "certificateAuthorities": [
+                "ca.inmetro.com"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.inmetro.com": {
+            "url": "grpcs://localhost:7050",
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer.inmetro.com",
+                "grpc-max-send-message-length": 4194304
+            },
+            "tlsCACerts": {
+                "path": "./home/ambienteteste/hades-project/Hermes-Fabric/blockchain/crypto-config/ordererOrganization/inmetro.com/orderers/orderer.inmetro.com/tls/ca.crt"
+            }
+        }
+    },
+    "peers": {
+        "peer0.inmetro.com": {
+            "url": "grpcs://localhost:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICQzCCAeqgAwIBAgIRAInC8NXvpuN1SYOOFixvpDIwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC2lubWV0cm8uY29tMRowGAYDVQQDExF0bHNjYS5p\nbm1ldHJvLmNvbTAeFw0xOTEyMTkxNjMwMDBaFw0yOTEyMTYxNjMwMDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtpbm1ldHJvLmNvbTEaMBgGA1UEAxMRdGxzY2EuaW5t\nZXRyby5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASTtS6Rbh8kBUjumE8n\n5YM8QDCkSh99SQy6HKtilvm+1jMvD6/9wSCA/dR9tSTtHSXzoK22dzbd4/ZmFBd3\nHmLoo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILFTSTe/j4AAqX8YaFS6\nbgOV110Vm6Pgi3ppy+uIrwwhMAoGCCqGSM49BAMCA0cAMEQCIAbJGeThHhlDnY4S\ny2mhFYxs7ZuM/BTtVMRG2wYgRk6fAiAtX/JEIJGpAjUcrpIkcztQK6uHwZ8e7czz\n1NaEOgAuQw==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.inmetro.com",
+                "hostnameOverride": "peer0.inmetro.com"
+            }
+        },
+        "peer1.inmetro.com": {
+            "url": "grpcs://localhost:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICQzCCAeqgAwIBAgIRAInC8NXvpuN1SYOOFixvpDIwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC2lubWV0cm8uY29tMRowGAYDVQQDExF0bHNjYS5p\nbm1ldHJvLmNvbTAeFw0xOTEyMTkxNjMwMDBaFw0yOTEyMTYxNjMwMDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtpbm1ldHJvLmNvbTEaMBgGA1UEAxMRdGxzY2EuaW5t\nZXRyby5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASTtS6Rbh8kBUjumE8n\n5YM8QDCkSh99SQy6HKtilvm+1jMvD6/9wSCA/dR9tSTtHSXzoK22dzbd4/ZmFBd3\nHmLoo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEILFTSTe/j4AAqX8YaFS6\nbgOV110Vm6Pgi3ppy+uIrwwhMAoGCCqGSM49BAMCA0cAMEQCIAbJGeThHhlDnY4S\ny2mhFYxs7ZuM/BTtVMRG2wYgRk6fAiAtX/JEIJGpAjUcrpIkcztQK6uHwZ8e7czz\n1NaEOgAuQw==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.inmetro.com",
+                "hostnameOverride": "peer1.inmetro.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.inmetro.com": {
+            "url": "https://localhost:7054",
+            "caName": "ca-inmetro",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICPDCCAeOgAwIBAgIQLKK3xiyofeA0TBUy2nxnqzAKBggqhkjOPQQDAjBpMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEUMBIGA1UEChMLaW5tZXRyby5jb20xFzAVBgNVBAMTDmNhLmlubWV0\ncm8uY29tMB4XDTE5MTIxOTE2MzAwMFoXDTI5MTIxNjE2MzAwMFowaTELMAkGA1UE\nBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lz\nY28xFDASBgNVBAoTC2lubWV0cm8uY29tMRcwFQYDVQQDEw5jYS5pbm1ldHJvLmNv\nbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABIX+YhAuqDCbcgFriH8KECBJn0+t\nqCksPIJiLFVWEpYoMezbXZrDdCNOS+qukbPlVMaWFzDsI1DQqfEe9XelRgyjbTBr\nMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEw\nDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQgA7+p9JtYz9A5N5xFJDrlxBVi7/IM\n+DaR1NPEVRAKjbYwCgYIKoZIzj0EAwIDRwAwRAIgA6kMMzl8g28TxTtzeQseqG3S\nBOpdZQrNB03vitqfrn0CID5V0yiuT/GATDTprEC55pUhPZZ8NltozkyotLr+Bsqk\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

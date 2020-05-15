@@ -1,0 +1,132 @@
+{
+    "name": "blockchain_default",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "client": {
+        "organization": "inmetro",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "mychannel": {
+            "orderers": [
+                "orderer.inmetro.com"
+            ],
+            "peers": {
+                "peer0.inmetro.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "ledgerQuery": true,
+                    "eventSource": true
+                },
+                "peer0.nanoBusiness.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": false,
+                    "ledgerQuery": true,
+                    "eventSource": false
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Inmetro": {
+            "mspid": "InmetroMSP",
+            "peers": [
+                "peer0.inmetro.com"
+            ],
+            "certificateAuthorities": [
+                "ca-inmetro"
+            ],
+            "adminPrivateKey": [
+                    "./crypto-config/peerOrganizations/inmetro.com/users/Admin@inmetro.com/msp/signcerts/Admin@inmetro.com-cert.pem"],
+            "signedCert": [
+                    "./crypto-config/peerOrganizations/inmetro.com/users/Admin@inmetro.com/msp/keystore/687015b0531624286a2a754b16380108895610d49267337e12a8e3c592d9e1e3_sk"]    
+        },
+        "NanoBusiness": {
+            "mspid": "NanoBusinessMSP",
+            "peers": [
+                "peer0.nanoBusiness.com"
+            ],
+            "certificateAuthorities": [
+                "ca-nanoBusiness"
+            ],
+            "adminPrivateKey": [
+                "./crypto-config/peerOrganizations/nanoBusiness.com/users/Admin@nanoBusiness.com/msp/signcerts/Admin@nanoBusiness.com-cert.pem"],
+            "signedCert": [    
+                    "./crypto-config/peerOrganizations/nanoBusiness.com/users/Admin@nanoBusiness.com/msp/keystore/bcd33ee939e35c15d904bd2e823421fb824e479620090dbec84f8d3a6545f16f_sk"]
+        }
+    },
+    "orderers": {
+        "orderer.inmetro.com": {
+            "url": "grpcs://localhost:7050",
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer.inmetro.com",
+                "grpc-max-send-message-length": 4194304
+            },
+            "tlsCACerts": {
+                "path": "crypto-config/ordererOrganizations/inmetro.com/orderers/orderer.inmetro.com/msp/tlscacerts/tlsca.inmetro.com-cert.pem"
+            }
+        }
+    },
+    "peers": {
+        "peer0.inmetro.com": {
+            "url": "grpcs://localhost:7051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.inmetro.com",
+                "grpc.keepalive_time_ms": 600000
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICQzCCAeqgAwIBAgIRAIRo62+Tz2tK1Fv6tT6WJEYwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC2lubWV0cm8uY29tMRowGAYDVQQDExF0bHNjYS5p\nbm1ldHJvLmNvbTAeFw0xOTEyMDYxNjUzMDBaFw0yOTEyMDMxNjUzMDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtpbm1ldHJvLmNvbTEaMBgGA1UEAxMRdGxzY2EuaW5t\nZXRyby5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATEfz5yszNHQ5pvpTVG\np22XUFodkg+zBbQWsA35omZ+JQNbwi1FGVbZHvDYE6v4ZodckKWlNVU792YAgDti\n0S2Wo20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIF7gnhmxEPN0EMuuerC0\nPEF9+bV5dCeQvHFhYcAIYJmjMAoGCCqGSM49BAMCA0cAMEQCIHBhlwzjCp0kz6es\nlB0+UCT45jEtuyR1PccNdwqtOmuQAiA7ERvCqs2YqBsY1zts6g3K/HK6C+lV+bF6\n/vJHOx36Tg==\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer0.nanoBusiness.com": {
+            "u_userrl": "grpcs://localhost:8051",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.nanoBusiness.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICVzCCAf2gAwIBAgIQU2mctHEay7m6jzttMjIj6zAKBggqhkjOPQQDAjB2MQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEZMBcGA1UEChMQbmFub0J1c2luZXNzLmNvbTEfMB0GA1UEAxMWdGxz\nY2EubmFub0J1c2luZXNzLmNvbTAeFw0xOTEyMDYxNjUzMDBaFw0yOTEyMDMxNjUz\nMDBaMHYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQH\nEw1TYW4gRnJhbmNpc2NvMRkwFwYDVQQKExBuYW5vQnVzaW5lc3MuY29tMR8wHQYD\nVQQDExZ0bHNjYS5uYW5vQnVzaW5lc3MuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D\nAQcDQgAEhPBUfomZ8s4woOo2DEqUai5LBvCB5F7UJrhvQEX2NrjpSe+8uewU7Kot\nAXF6hU6+KuXobigmociSGje3x8mAUqNtMGswDgYDVR0PAQH/BAQDAgGmMB0GA1Ud\nJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MCkGA1Ud\nDgQiBCAKziCs0aH7D6iyAKpPqMI44QQfN5KkGgUHs+sx2qOjhDAKBggqhkjOPQQD\nAgNIADBFAiEAjX7w6aQKq4miyfxt4kO9vacNn2zkgZYw72QaZ0z7XL8CIGWK+j3M\noNfzfVMHvCLw0zAWMUKLSsvedkG+bQL8LVf+\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca-inmetro": {
+            "url": "https://localhost:7054",
+            "httpOptions": {
+                "verify": false
+            },
+            "tlsCACerts": {
+                "path": "crypto-config/peerOrganizations/inmetro.com/ca/ca.inmetro.com-cert.pem"
+            },
+            "registrar": [
+                {
+                    "enrollId": "admin",
+                    "enrollSecret": "adminpw"
+                }
+            ],
+            "caName": "ca-inmetro"
+        },
+        "ca-nanoBusiness": {
+            "url": "https://localhost:8054",
+            "httpOptions": {
+                "verify": false
+            },
+            "tlsCACerts": {
+                "path": "crypto-config/peerOrganizations/nanoBusiness.com/ca/ca.nanoBusiness.com-cert.pem"
+            },
+            "registrar": [
+                {
+                    "enrollId": "admin",
+                    "enrollSecret": "adminpw"
+                }
+            ],
+            "caName": "ca-nanoBusiness"
+        }
+    }
+}

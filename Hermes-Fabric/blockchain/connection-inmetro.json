@@ -1,0 +1,60 @@
+{
+    "name": "blockchain-inmetro",
+    "version": "1.0.0",
+    "client": {
+        "organization": "inmetro",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "inmetro": {
+            "mspid": "inmetroMSP",
+            "peers": [
+                "peer0.inmetro.com",
+                "peer1.inmetro.com"
+            ],
+            "certificateAuthorities": [
+                "ca.inmetro.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.inmetro.com": {
+            "url": "grpcs://localhost:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICQzCCAeqgAwIBAgIRAKGaesG/t7MKfmBDzU3/NuMwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC2lubWV0cm8uY29tMRowGAYDVQQDExF0bHNjYS5p\nbm1ldHJvLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1MDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtpbm1ldHJvLmNvbTEaMBgGA1UEAxMRdGxzY2EuaW5t\nZXRyby5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQg2J8aSOPM/mDmxta1\nwdvGeLVWY3PFxLKGxTxMIGASHIJZnwd02JZ+2l+L2Sh2kXjcCLBlKI2cEX+0GbI6\nGwk1o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIDxECzbQ3S1iPrlN5Qit\nc+SYhLvjElGXdgb/FOfa5NAnMAoGCCqGSM49BAMCA0cAMEQCICjYOO7Gb93wk4KO\nyJDsmEANe9ZPMekKq0go3S7iVrtUAiASsHnx1aKOiD9XfN7tk8iSpHlYWSeebTOB\n+u2yxmhWOg==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.inmetro.com",
+                "hostnameOverride": "peer0.inmetro.com"
+            }
+        },
+        "peer1.inmetro.com": {
+            "url": "grpcs://localhost:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICQzCCAeqgAwIBAgIRAKGaesG/t7MKfmBDzU3/NuMwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC2lubWV0cm8uY29tMRowGAYDVQQDExF0bHNjYS5p\nbm1ldHJvLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1MDBaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtpbm1ldHJvLmNvbTEaMBgGA1UEAxMRdGxzY2EuaW5t\nZXRyby5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAAQg2J8aSOPM/mDmxta1\nwdvGeLVWY3PFxLKGxTxMIGASHIJZnwd02JZ+2l+L2Sh2kXjcCLBlKI2cEX+0GbI6\nGwk1o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsG\nAQUFBwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIDxECzbQ3S1iPrlN5Qit\nc+SYhLvjElGXdgb/FOfa5NAnMAoGCCqGSM49BAMCA0cAMEQCICjYOO7Gb93wk4KO\nyJDsmEANe9ZPMekKq0go3S7iVrtUAiASsHnx1aKOiD9XfN7tk8iSpHlYWSeebTOB\n+u2yxmhWOg==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.inmetro.com",
+                "hostnameOverride": "peer1.inmetro.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.inmetro.com": {
+            "url": "https://localhost:7054",
+            "caName": "ca-inmetro",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICPjCCAeSgAwIBAgIRALR7PEUC9A8ZGRQxFeZgsm8wCgYIKoZIzj0EAwIwaTEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC2lubWV0cm8uY29tMRcwFQYDVQQDEw5jYS5pbm1l\ndHJvLmNvbTAeFw0yMDAxMjQxNTQ1MDBaFw0zMDAxMjExNTQ1MDBaMGkxCzAJBgNV\nBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNp\nc2NvMRQwEgYDVQQKEwtpbm1ldHJvLmNvbTEXMBUGA1UEAxMOY2EuaW5tZXRyby5j\nb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASXnAP51QCTpZQe1fucvDNvrKHT\nL5OwbHPDPKLTNBchIjnLam+8t9Q1D5sEDulTRFaJozQvL4jgKrPM3qbkg2vco20w\nazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMB\nMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIFBhZLpRiTr6TE/ECLPZZb29tjAL\nEYg6OHhGeGm90FLjMAoGCCqGSM49BAMCA0gAMEUCIQCQciQZkDwYVYuboSGRNeaR\nMH4G+n8rzQ8UHSIRkDfsrQIgKj5etbQha9WS58Mp7KXT3YilreP7ocN02h0f+Nwu\nCwg=\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}
